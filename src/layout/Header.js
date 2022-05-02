@@ -10,8 +10,7 @@ import {
 } from './HeaderStyles'
 import NotificationMessage from './NotificationMessage';
 
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import {Link, useLocation} from 'react-router-dom';
 
 const menus = [
   { id : 'menu1', name : '소통해요', path : '/home'},
@@ -20,7 +19,8 @@ const menus = [
 
 const Header = (props) => {
 
-  const router = useRouter();
+  const location = useLocation();
+
   const [openNotification, setOpenNotification] = useState(false);
 
   const createMenus = (menus) => {
@@ -28,8 +28,8 @@ const Header = (props) => {
     return menus.map((menu,index)=>{
       return(
         <NavLinkWrap>
-          <Link href={menu.path}>
-            <NavLink key={index} isActive={ router.pathname.includes(menu.path) ? true : false }>{menu.name}</NavLink>
+          <Link to={menu.path}>
+            <NavLink key={index} isActive={ location.pathname.includes(menu.path) ? true : false }>{menu.name}</NavLink>
           </Link>
         </NavLinkWrap>
       )
@@ -55,7 +55,6 @@ const Header = (props) => {
         <NotificationMessage>test</NotificationMessage>
         <NotificationMessage>test</NotificationMessage>
         <NotificationMessage>test</NotificationMessage>
-
       </NotificationMenu>
     </HeaderContainer>
   )

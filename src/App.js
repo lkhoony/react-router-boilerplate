@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import GlobalStyles from "./styles/globals";
+import {ThemeProvider} from "styled-components";
+import theme from "./themes/theme";
+import {Provider} from "mobx-react";
+import HomePage from "./pages/HomePage";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = (props) => {
+
+    return (
+        <>
+            <ThemeProvider theme={theme}>
+                <GlobalStyles />
+                <Provider>
+                    <BrowserRouter>
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <Redirect
+                                    to={"/home"}
+                                />
+                            )}
+                        />
+                        <Switch>
+                            <Route path={"/home"} component={HomePage}></Route>
+                            <Route path={"/home"} component={HomePage}></Route>
+                        </Switch>
+                    </BrowserRouter>
+                </Provider>
+            </ThemeProvider>
+        </>
+    );
 }
 
 export default App;
