@@ -3,6 +3,7 @@ import {ThemeProvider} from "styled-components";
 import theme from "./themes/theme";
 import {Provider} from "mobx-react";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 
 const App = (props) => {
@@ -23,8 +24,8 @@ const App = (props) => {
                             )}
                         />
                         <Switch>
-                            <Route path={"/home"} component={HomePage}></Route>
-                            <Route path={"/home"} component={HomePage}></Route>
+                            <Route path={"/group"} component={LoginPage}/>
+                            <Route path={"/home"} component={HomePage}/>
                         </Switch>
                     </BrowserRouter>
                 </Provider>
